@@ -17,8 +17,8 @@ void enableRawMode(void) {
     tcgetattr(STDIN_FILENO, &orig_termios);
     struct termios raw = orig_termios;
 
-    // Turn off echo attribute
-    raw.c_lflag &= ~(ECHO);
+    // Turn off echo attribute and canonical mode
+    raw.c_lflag &= ~(ECHO | ICANON);
 
     // Set terminal attributes
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
