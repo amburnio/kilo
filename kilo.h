@@ -5,6 +5,10 @@
 #include <termios.h>
 #include <unistd.h>
 
+/*** defines ***/
+
+#define CTRL_KEY(k) ((k) & 0x1f)
+
 /*** prototypes ***/
 
 void enableRawMode(void);
