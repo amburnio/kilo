@@ -10,6 +10,7 @@ int main(void) {
     enableRawMode();
 
     while (1) {
+        editorRefreshScreen();
         editorProcessKeypress();
     }
 
@@ -55,6 +56,16 @@ char editorReadKey(void) {
         if (nread == -1 && errno != EAGAIN) die("read");
     }
     return c;
+}
+
+/*** output ***/
+
+void editorRefreshScreen(void) {
+    // Clear entire screen
+    write(STDOUT_FILENO, "\x1b[2J", 4);
+
+    // Reposition the cursor at the first row and column
+    write(STDOUT_FILENO, "\x1b[H", 3);
 }
 
 /*** input ***/

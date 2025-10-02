@@ -16,3 +16,4 @@ void disableRawMode(void);
 void die(const char *s);
 char editorReadKey(void);
 void editorProcessKeypress(void);
+void editorRefreshScreen(void);
