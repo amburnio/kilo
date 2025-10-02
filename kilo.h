@@ -17,3 +17,5 @@ void die(const char *s);
 char editorReadKey(void);
 void editorProcessKeypress(void);
 void editorRefreshScreen(void);
+
+void clearScreen(void);

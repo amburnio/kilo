@@ -45,6 +45,7 @@ void disableRawMode(void) {
 }
 
 void die(const char *s) {
+    clearScreen();
     perror(s);
     exit(1);
 }
@@ -61,11 +62,7 @@ char editorReadKey(void) {
 /*** output ***/
 
 void editorRefreshScreen(void) {
-    // Clear entire screen
-    write(STDOUT_FILENO, "\x1b[2J", 4);
-
-    // Reposition the cursor at the first row and column
-    write(STDOUT_FILENO, "\x1b[H", 3);
+    clearScreen();
 }
 
 /*** input ***/
@@ -75,7 +72,18 @@ void editorProcessKeypress(void) {
 
     switch (c) {
         case CTRL_KEY('q'):
+            clearScreen();
             exit(0);
             break;
     }
+}
+
+/*** helper functions ***/
+
+void clearScreen(void) {
+    // Clear entire screen
+    write(STDOUT_FILENO, "\x1b[2J", 4);
+
+    // Reposition the cursor at the first row and column
+    write(STDOUT_FILENO, "\x1b[H", 3);
 }
